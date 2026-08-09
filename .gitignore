@@ -8,3 +8,7 @@ frontend/.next/
 __pycache__/
 *.pyc
 .vs/
+frontend/.env.local
+frontend/out/
+npm-debug.log
+.DS_Store
