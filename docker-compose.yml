@@ -3,6 +3,7 @@ services:
     image: postgres:15
     volumes:
       - postgres_data:/var/lib/postgresql/data/
+      - media_data:/app/media
     env_file:
       - .env
     ports:
@@ -17,10 +18,7 @@ services:
     build: ./backend
     command: sh -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
     volumes:
-      - ./backend:/app
-      - .frontend:/app
-      - /app/node_modules
-      - /app/.next
+      - ./backend:/app  # Tylko pliki backendu
     ports:
       - "8000:8000"
     env_file:
@@ -33,7 +31,8 @@ services:
     build: ./frontend
     volumes:
       - ./frontend:/app
-      - /app/node_modules
+      - /app/node_modules  # Chroni paczki przed nadpisaniem z hosta (Windows)
+      - /app/.next         # Chroni cache Next.js przed nadpisaniem z hosta (Windows)
     ports:
       - "3000:3000"
     env_file:
@@ -43,3 +42,4 @@ services:
 
 volumes:
   postgres_data:
+  media_data:
