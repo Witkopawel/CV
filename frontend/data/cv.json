@@ -1,0 +1,59 @@
+﻿{
+  "personal": {
+    "name": "Paweł Witko",
+    "title": "IT Student",
+    "phone": "+48 575 555 047",
+    "email": "p.witko2004@gmail.com",
+    "location": "Rzeszów, Poland",
+    "github": "Witkopawel",
+    "linkedin": "Paweł Witko",
+    "photoPath": "/profile.jpg"
+  },
+  "about": "IT student from Rzeszów University of Technology, coding on a daily basis and experienced in creating both websites and games. I thrive in environments that require analytical thinking and constant learning. My proactive \"can-do\" attitude means I take on every task with full commitment. I pride myself on being an exceptionally open-minded and communicative individual who finds it easy to connect with people. Arch enjoyer.",
+  "skills": [ "Unity", "C#", "Python", "Git", "SQL", "UE5" ],
+  "languages": [ "Polish (native)", "English (Communicative B2/C1)" ],
+  "education": [
+    {
+      "institution": "Politechnika Rzeszowska im. Ignacego Łukasiewicza",
+      "degree": "Informatyka I",
+      "period": "2023 - present"
+    }
+  ],
+  "experience": [
+    {
+      "role": "Game Development Intern",
+      "company": "Simplicity Games",
+      "period": "~a year",
+      "details": [
+        "Working on large-scale games like Cheap Car Repair (100,000 copies sold) and Low-Budget Repairs taught me how to develop games efficiently, what pitfalls to avoid, and how to analyze code to successfully implement new features.",
+        "Collaborated with a professional development team on large-scale projects, gaining hands-on experience in the full game development lifecycle.",
+        "Implemented new gameplay mechanics and features using Unity.",
+        "Developed and optimized diverse projects.",
+        "Resolved complex logic issues and performed rigorous debugging to ensure high performance and smooth gameplay."
+      ]
+    },
+    {
+      "role": "Active Student",
+      "company": "Rzeszów University of Technology",
+      "period": "2023 - present",
+      "details": [
+        "Engaged in academic coding challenges and collaborative software engineering projects.",
+        "Worked with peer groups to design and implement efficient algorithms, strengthening both technical and teamwork skills."
+      ]
+    }
+  ],
+  "hobbies": [
+    {
+      "title": "Game Development",
+      "description": "I have a strong passion for developing both 2D and 3D games. While my primary expertise lies in Unity, I am also highly adaptable and experienced in working with Unreal Engine 5, as well as coding games from scratch using various programming languages."
+    },
+    {
+      "title": "Game Analysis",
+      "description": "My deep passion is analyzing games to understand how and why they work. My analysis extends beyond the codebase, looking at player psychology to understand how design decisions impact engagement and behavior."
+    },
+    {
+      "title": "Playing Games",
+      "description": "How I could make games without loving playing them. Playing games that you created feels amazing."
+    }
+  ]
+}

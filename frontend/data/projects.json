@@ -1,0 +1,34 @@
+﻿[
+  {
+    "id": 1,
+    "title": "System destrukcji VR",
+    "category": "Unity • Meta Quest 3S • C#",
+    "description": "Projekt inżynierski skupiony na zaawansowanym systemie fizyki i niszczenia obiektów w wirtualnej rzeczywistości. Zoptymalizowany pod kątem urządzeń mobilnych VR, z precyzyjnym obliczaniem wektorów prędkości przy uderzeniach.",
+    "placeholderGradient": "from-blue-600 to-purple-600",
+    "link": "#"
+  },
+  {
+    "id": 2,
+    "title": "Architektura Full-Stack",
+    "category": "Next.js • Django • Docker • PostgreSQL",
+    "description": "Skonteneryzowane, wydajne środowisko z izolowanymi wolumenami. Frontend oparty na SSR z wymuszonym Webpackiem, komunikujący się z backendem po wewnętrznej sieci Dockera.",
+    "placeholderGradient": "from-emerald-500 to-teal-800",
+    "link": "#"
+  },
+  {
+    "id": 3,
+    "title": "Prototypy Arduino",
+    "category": "C++ • Hardware • Embedded",
+    "description": "Budowa układów sprzętowych łączących mikrokontrolery Arduino z fizycznymi czujnikami i wyświetlaczami. Bezpośrednia praca z elektroniką i kodem niskopoziomowym.",
+    "placeholderGradient": "from-orange-500 to-red-700",
+    "link": "#"
+  },
+  {
+    "id": 4,
+    "title": "Komercyjny Game Dev",
+    "category": "Unity • Optymalizacja • Debugging",
+    "description": "Udział w tworzeniu gier takich jak Cheap Car Repair czy Low-Budget Repairs. Implementacja mechanik, analiza kodu i rozwiązywanie skomplikowanych problemów logicznych w dużych projektach.",
+    "placeholderGradient": "from-indigo-600 to-blue-900",
+    "link": "#"
+  }
+]

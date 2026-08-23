@@ -18,7 +18,7 @@ services:
     build: ./backend
     command: sh -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
     volumes:
-      - ./backend:/app  # Tylko pliki backendu
+      - ./backend:/app  
     ports:
       - "8000:8000"
     env_file:
@@ -31,8 +31,8 @@ services:
     build: ./frontend
     volumes:
       - ./frontend:/app
-      - /app/node_modules  # Chroni paczki przed nadpisaniem z hosta (Windows)
-      - /app/.next         # Chroni cache Next.js przed nadpisaniem z hosta (Windows)
+      - /app/node_modules  
+      - /app/.next         
     ports:
       - "3000:3000"
     env_file:
