@@ -35,3 +35,16 @@ export async function getProjects(): Promise<Project[]> {
     return [];
   }
 }
+export async function getProjectById(id: string): Promise<ApiProject | null> {
+    const apiUrl = process.env.INTERNAL_API_URL;
+
+    for (const url of apiUrl) {
+        try {
+            const res = await fetch(url, { cache: 'no-store' });
+            if (res.ok) return await res.json();
+        } catch (error) {
+            continue;
+        }
+    }
+    return null;
+}

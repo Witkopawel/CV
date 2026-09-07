@@ -30,6 +30,9 @@ export default function Hero() {
                 <div className="absolute top-[20%] right-[-10%] w-[30%] h-[50%] bg-purple-600/20 rounded-full blur-[120px] animate-pulse" style={{ animationDuration: '12s', animationDelay: '2s' }}></div>
                 <div className="absolute bottom-[-20%] left-[20%] w-[50%] h-[40%] bg-emerald-600/20 rounded-full blur-[120px] animate-pulse" style={{ animationDuration: '10s', animationDelay: '4s' }}></div>
                 <div className="absolute inset-0 bg-gray-950/40 [mask-image:radial-gradient(ellipse_at_center,transparent_20%,#000_100%)]"></div>
+
+                {/* NOWE: Gradient maskujący dolną krawędź - płynne przejście (Fade-out) */}
+                <div className="absolute bottom-0 left-0 w-full h-48 md:h-64 bg-gradient-to-b from-transparent to-[#030712]"></div>
             </div>
 
             {/* Treść */}
