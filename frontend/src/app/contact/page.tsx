@@ -2,23 +2,25 @@
 
 import { useState } from "react";
 import Link from "next/link";
-
+import { sendContactMessage } from "../actions/contact";
 export default function ContactPage() {
     const [formData, setFormData] = useState({ name: "", email: "", message: "" });
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
 
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
+    const handleSubmit = async (e: React.ChangeEvent) => {
+        e.preventDefault(); // Zatrzymuje przeładowanie strony
         setIsSubmitting(true);
+        setStatus("idle");
         
-        // Tutaj w przyszłości dodasz strzał do API Django (np. POST /api/contact/)
-        // Symulacja wysyłania:
-        setTimeout(() => {
-            setIsSubmitting(false);
+        const result = await sendContactMessage(formData);
+        if(result.success){
             setStatus("success");
-            setFormData({ name: "", email: "", message: "" });
-        }, 1500);
+            setFormData({name: "", email: "", message: ""});
+        } else{
+            setStatus("error")
+        }
+        setIsSubmitting(false);
     };
 
     return (

@@ -2,6 +2,7 @@
 export interface Project {
   id: number;
   title: string;
+  category: string;
   description: string;
   technology_stack: string;
   github_url: string;
@@ -35,16 +36,15 @@ export async function getProjects(): Promise<Project[]> {
     return [];
   }
 }
-export async function getProjectById(id: string): Promise<ApiProject | null> {
-    const apiUrl = process.env.INTERNAL_API_URL;
+export async function getProjectById(id: string): Promise<Project | null> {
+    // 1. Zamiast ryzykować błędy sieciowe (301, brak slasha) dla pojedynczego ID w Dockerze,
+    // korzystamy z niezawodnej funkcji pobierającej wszystko.
+    const allProjects = await getProjects();
 
-    for (const url of apiUrl) {
-        try {
-            const res = await fetch(url, { cache: 'no-store' });
-            if (res.ok) return await res.json();
-        } catch (error) {
-            continue;
-        }
-    }
-    return null;
+    // 2. Szukamy projektu lokalnie (w pamięci serwera Next.js).
+    // Rzutujemy oba ID na string, aby uniknąć błędów porównania (np. "1" vs 1).
+    const foundProject = allProjects.find(p => String(p.id) === String(id));
+
+    // 3. Jeśli znajdziemy - zwracamy projekt. Jeśli nie - zwracamy null.
+    return foundProject || null;
 }
