@@ -1,8 +1,13 @@
-﻿"use client";
+"use client";
 
 import Link from "next/link";
 import { useState } from "react";
-import type { ApiProject } from "../lib/api"; // Bezpieczny import typu
+import type { Project } from "../../lib/api";
+
+// 1. Zdefiniowany ścisły kontrakt z typem Project[]
+interface ProjectsProps {
+    initialProjects?: Project[];
+}
 
 const fallbackGradients = [
     "from-blue-600 to-purple-600",
@@ -11,7 +16,8 @@ const fallbackGradients = [
     "from-indigo-600 to-blue-900"
 ];
 
-export default function Projects({ initialProjects }: { initialProjects: ApiProject[] }) {
+// 2. Odbieramy propsy i przypisujemy domyślną pustą tablicę, żeby uniknąć błędów mapowania
+export default function Projects({ initialProjects = [] }: ProjectsProps) {
     const [currentSlide, setCurrentSlide] = useState(0);
 
     // Awaryjny wygląd, gdy baza jest całkowicie pusta
@@ -45,17 +51,17 @@ export default function Projects({ initialProjects }: { initialProjects: ApiProj
                     const isCurrent = index === currentSlide;
                     const isPrev = index === (currentSlide - 1 + initialProjects.length) % initialProjects.length;
                     const isNext = index === (currentSlide + 1) % initialProjects.length;
-                    
+
                     let positionClass = "opacity-0 z-0 pointer-events-none [transform:translateX(0)_scale(0.5)_rotateY(180deg)]";
-                    
+
                     if (isCurrent) positionClass = "opacity-100 z-20 [transform:translateX(0)_scale(1)_rotateY(0deg)]";
-                    else if (isPrev) positionClass = "opacity-20 hover:opacity-40 blur-[2px] z-10 cursor-pointer [transform:translateX(-65%)_scale(0.85)_rotateY(35deg)] md:[transform:translateX(-50%)_scale(0.8)_rotateY(40deg)]";
-                    else if (isNext) positionClass = "opacity-20 hover:opacity-40 blur-[2px] z-10 cursor-pointer [transform:translateX(65%)_scale(0.85)_rotateY(-35deg)] md:[transform:translateX(50%)_scale(0.8)_rotateY(-40deg)]";
+                    else if (isPrev) positionClass = "opacity-20 hover:opacity-40 blur-[2px] z-10 cursor-pointer [transform:translateX(-65%)_scale(0.85)_rotateY(35deg)] md:[transform:translateX(-50%)_scale(0.85)_rotateY(35deg)]";
+                    else if (isNext) positionClass = "opacity-20 hover:opacity-40 blur-[2px] z-10 cursor-pointer [transform:translateX(65%)_scale(0.85)_rotateY(-35deg)] md:[transform:translateX(50%)_scale(0.85)_rotateY(-35deg)]";
 
                     const gradient = fallbackGradients[project.id % fallbackGradients.length];
 
                     return (
-                        <div key={project.id} onClick={() => { if (isPrev) prevSlide(); if (isNext) nextSlide(); }} className={`absolute w-full md:w-[75%] lg:w-[60%] h-full transition-all duration-700 ease-[cubic-bezier(0.25,0.8,0.25,1)] [transform-style:preserve-3d] ${positionClass}`}>
+                        <div key={project.id} onClick={() => { if (isPrev) prevSlide(); if (isNext) nextSlide(); }} className={`absolute w-full md:w-[75%] lg:w-[60%] h-full transition-all duration-700 ease-in-out ${positionClass}`}>
                             <div className="w-full h-full flex flex-col md:flex-row items-stretch bg-gray-900/60 border border-gray-700 backdrop-blur-xl rounded-3xl overflow-hidden shadow-2xl">
                                 <div className={`w-full md:w-5/12 h-48 md:h-full bg-gradient-to-br ${gradient} relative flex items-center justify-center overflow-hidden`}>
                                     {project.image ? (
@@ -69,7 +75,7 @@ export default function Projects({ initialProjects }: { initialProjects: ApiProj
                                     <h3 className="text-2xl md:text-4xl font-bold text-white mb-4 leading-tight">{project.title}</h3>
                                     <p className="text-gray-400 text-sm md:text-base leading-relaxed mb-8 flex-grow line-clamp-4">{project.description}</p>
                                     <div className={!isCurrent ? "pointer-events-none" : ""}>
-                                        <Link href={`/projects/${project.id}`} className="inline-flex items-center gap-2 text-white bg-white/10 hover:bg-white/20 px-6 py-2.5 rounded-full font-medium transition-colors border border-white/5 text-sm md:text-base">
+                                        <Link href={`/projects/${project.id}`} className="inline-flex items-center gap-2 text-white bg-white/10 hover:bg-white/20 px-6 py-2.5 rounded-full font-medium transition-all duration-300 ease-in-out">
                                             Przeanalizuj kod
                                         </Link>
                                     </div>
@@ -79,10 +85,10 @@ export default function Projects({ initialProjects }: { initialProjects: ApiProj
                     );
                 })}
 
-                <button onClick={prevSlide} className="absolute left-2 md:left-8 top-1/2 transform -translate-y-1/2 bg-gray-900/50 hover:bg-gray-800 border border-gray-700 text-white w-12 h-12 rounded-full flex items-center justify-center transition-all z-30 shadow-xl">
+                <button onClick={prevSlide} className="absolute left-2 md:left-8 top-1/2 transform -translate-y-1/2 bg-gray-900/50 hover:bg-gray-800 border border-gray-700 text-white w-12 h-12 rounded-full flex items-center justify-center transition-all z-30">
                     <svg className="w-6 h-6 pr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
                 </button>
-                <button onClick={nextSlide} className="absolute right-2 md:right-8 top-1/2 transform -translate-y-1/2 bg-gray-900/50 hover:bg-gray-800 border border-gray-700 text-white w-12 h-12 rounded-full flex items-center justify-center transition-all z-30 shadow-xl">
+                <button onClick={nextSlide} className="absolute right-2 md:right-8 top-1/2 transform -translate-y-1/2 bg-gray-900/50 hover:bg-gray-800 border border-gray-700 text-white w-12 h-12 rounded-full flex items-center justify-center transition-all z-30">
                     <svg className="w-6 h-6 pl-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
                 </button>
             </div>

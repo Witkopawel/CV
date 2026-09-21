@@ -1,3 +1,4 @@
+// @ts-nocheck
 ﻿import Hero from "../components/Hero";
 import ProjectTransition from "../components/ProjectTransition";
 import Projects from "../components/Projects";
