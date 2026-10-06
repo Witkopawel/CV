@@ -3,7 +3,6 @@ services:
     image: postgres:15
     volumes:
       - postgres_data:/var/lib/postgresql/data/
-      - media_data:/app/media
     ports:
       - "5432:5432"
     healthcheck:
@@ -14,25 +13,36 @@ services:
 
   backend:
     build: ./backend
-    command: sh -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+    command: sh -c "python manage.py collectstatic --noinput && python manage.py migrate && gunicorn core.wsgi:application --bind 0.0.0.0:8000 --workers 3"
     volumes:
-      - ./backend:/app  
-    ports:
-      - "8000:8000"
+      - ./backend:/app
+      - ./backend/media:/app/media
+      - ./backend/static:/app/static
     env_file:
       - ./backend/.env
     depends_on:
       db:
         condition: service_healthy
 
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./backend/media:/app/media:ro
+      - ./backend/static:/app/static:ro
+      - /etc/letsencrypt:/etc/letsencrypt:ro
+    depends_on:
+      - backend
+      - frontend
   frontend:
     build: ./frontend
     volumes:
       - ./frontend:/app
-      - /app/node_modules  
-      - /app/.next         
-    ports:
-      - "3000:3000"
+      - /app/node_modules
+      - /app/.next
     env_file:
       - ./frontend/.env.local
     depends_on:
@@ -40,4 +50,3 @@ services:
 
 volumes:
   postgres_data:
-  media_data:
