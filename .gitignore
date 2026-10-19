@@ -12,3 +12,4 @@ frontend/.env.local
 frontend/out/
 npm-debug.log
 .DS_Store
+node_modules/
