@@ -11,13 +11,13 @@
       "titleStart": "Kim ",
       "titleHighlight": "jestem?",
       "card1Title": "Fullstack Developer",
-      "card1Desc": "Krótki przegląd moich umiejętności i doświadczenia.",
+      "card1Desc": "Tworzę aplikacje od podstaw – od logiki i baz danych po interfejs użytkownika. Samodzielnie zbudowałem i wdrożyłem do sieci własną stronę internetową",
       "card2Title": "Architektura Systemów",
-      "card2Desc": "Krótki przegląd moich umiejętności i doświadczenia.",
+      "card2Desc": "Skupiam się na logicznym planowaniu projektów. Projektuję struktury baz danych (SQL) i piszę programy narzędziowe, które pomagają mi w codziennych zadaniach.",
       "card3Title": "Psychologia Gracza",
       "card3Desc": "Nie tylko piszę kod. Analizuję gry od strony designu, by zrozumieć, co realnie wpływa na zaangażowanie i zachowanie użytkownika.",
       "card4Title": "Hardware & Arduino",
-      "card4Desc": "Wychodzę poza ekran monitora. Buduję fizyczne układy elektroniczne i łączę je z niskopoziomowym kodem w C++.",
+      "card4Desc": "Wychodzę poza ekran monitora. Buduję fizyczne układy elektroniczne i łączę je z niskopoziomowym kodem.",
       "summary": "To tylko ułamek mojej drogi. Studiuję Informatykę na Politechnice Rzeszowskiej, koduję każdego dnia i nie boję się żadnego wyzwania.",
       "cta": "Zobacz pełne CV"
     },
@@ -34,7 +34,7 @@
     "titleStart": "Wyróżnione",
     "titleHighlight": "Projekty",
     "subtitle": "Przekrój moich umiejętności: od silników gier po backend.",
-    "viewProject": "Przeanalizuj kod"
+    "viewProject": "Zobacz"
   },
   "about": {
     "title": "O mnie"
@@ -48,5 +48,23 @@
     "titleHighlight": "Projektów",
     "empty": "Baza projektów jest pusta.",
     "preview": "Podgląd"
-  }
+  },
+  "contactForm": {
+      "badge": "Otwarty na nowe wyzwania",
+      "titleStart": "Zbudujmy coś",
+      "titleHighlight": "NIESAMOWITEGO.",
+      "description": "Masz pomysł na projekt, szukasz programisty do zespołu, czy po prostu chcesz pogadać o technologii, grach lub nowinkach? Zostaw wiadomość!",
+      "emailBtn": "Wyślij e-mail",
+      "githubBtn": "GitHub",
+      "nameLabel": "Twoje Imię",
+      "namePlaceholder": "Jan Kowalski",
+      "emailLabel": "Adres E-mail",
+      "emailPlaceholder": "jan@example.com",
+      "messageLabel": "Wiadomość",
+      "messagePlaceholder": "Opisz, o czym chcesz porozmawiać...",
+      "submitBtn": "Wyślij Wiadomość",
+      "submittingBtn": "Wysyłanie...",
+      "successMsg": "Wiadomość została wysłana! Odpowiem najszybciej jak to możliwe.",
+      "errorMsg": "Wystąpił błąd podczas wysyłania. Spróbuj ponownie."
+    }
 }

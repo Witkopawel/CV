@@ -6,6 +6,7 @@ class Project(models.Model):
         "Games": "Games",
         "Web": "Website",
         "VR": "VR",
+        "Other": "Other",
     }
     category = models.CharField(max_length=10, choices=CATEGORY, default="None")
     technology_stack = models.CharField(max_length=200, verbose_name="Technologie")

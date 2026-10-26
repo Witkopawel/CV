@@ -11,13 +11,13 @@
       "titleStart": "Who ",
       "titleHighlight": "am I?",
       "card1Title": "Fullstack Developer",
-      "card1Desc": "A brief overview of my skills and experience.",
+      "card1Desc": "I build applications from scratch – from logic and databases to user interfaces. I independently developed and deployed my own website.",
       "card2Title": "System Architecture",
-      "card2Desc": "A brief overview of my skills and experience.",
+      "card2Desc": "I focus on logical project planning. I design database structures (SQL) and write utility programs that help me with my daily tasks.",
       "card3Title": "Gamer Psychology",
-      "card3Desc": "I don't just write code. I analyze games from a design perspective to understand what really drives user engagement and behavior.",
+      "card3Desc": "I don't just write code. I analyze games from a design perspective to understand what truly drives player engagement and behavior.",
       "card4Title": "Hardware & Arduino",
-      "card4Desc": "I go beyond the monitor screen. I build physical electronic circuits and connect them with low-level C++ code.",
+      "card4Desc": "I step outside the screen. I build physical electronic circuits and integrate them with low-level code.",
       "summary": "This is just a fraction of my journey. I study Computer Science at Rzeszów University of Technology, code every day, and fear no challenge.",
       "cta": "See full CV"
     },
@@ -48,5 +48,23 @@
     "titleHighlight": "Catalog",
     "empty": "The project database is empty.",
     "preview": "Preview"
-  }
+  },
+  "contactForm": {
+      "badge": "Open to new challenges",
+      "titleStart": "Let's build something",
+      "titleHighlight": "AMAZING.",
+      "description": "Have a project idea, looking for a developer for your team, or just want to chat about tech, games, or news? Leave a message!",
+      "emailBtn": "Send e-mail",
+      "githubBtn": "GitHub",
+      "nameLabel": "Your Name",
+      "namePlaceholder": "John Doe",
+      "emailLabel": "E-mail Address",
+      "emailPlaceholder": "john@example.com",
+      "messageLabel": "Message",
+      "messagePlaceholder": "Describe what you want to talk about...",
+      "submitBtn": "Send Message",
+      "submittingBtn": "Sending...",
+      "successMsg": "Message sent successfully! I will reply as soon as possible.",
+      "errorMsg": "An error occurred while sending. Please try again."
+    }
 }
