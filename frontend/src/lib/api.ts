@@ -1,4 +1,3 @@
-// Typowanie przeniesione do warstwy współdzielonej
 export interface Project {
   id: number;
   title: string;
@@ -10,41 +9,39 @@ export interface Project {
   created_at: string;
 }
 
-// Dedykowana funkcja do pobierania projektów
-export async function getProjects(): Promise<Project[]> {
-  // Używamy wyłącznie bezpiecznego połączenia wewnątrz sieci Dockera (SSR)
+export async function getProjects(lang: string = 'en'): Promise<Project[]> {
   const apiUrl = process.env.INTERNAL_API_URL;
   
   if (!apiUrl) {
-    console.warn("Brakuje zmiennej INTERNAL_API_URL w konfiguracji środowiska.");
     return [];
   }
-
   try {
-    const res = await fetch(`${apiUrl}/api/projects/`, {
-      cache: 'no-store' // Pobiera zawsze świeże dane. W produkcji można pomyśleć o 'force-cache' i 'next: { revalidate: 3600 }'
+    const res = await fetch(`${apiUrl}/api/projects/?lang=${lang}`, {
+      cache: 'no-store'
     });
 
     if (!res.ok) {
       throw new Error(`API odpowiedziało statusem: ${res.status}`);
     }
+    const data = await res.json();
+    return data.map((project: any) => ({
+      ...project,
+      title: typeof project.title === 'object' 
+        ? (project.title[lang] || project.title['en'] || project.title['pl'] || "") 
+        : project.title,
+      description: typeof project.description === 'object' 
+        ? (project.description[lang] || project.description['en'] || project.description['pl'] || "") 
+        : project.description,
+    }));
 
-    return await res.json();
   } catch (error) {
-    console.error("Błąd podczas pobierania projektów z backendu:", error);
-    // Zwracamy pustą tablicę, aby UI mogło obsłużyć brak danych zamiast wyrzucać crash strony
+    console.error("", error);
     return [];
   }
 }
-export async function getProjectById(id: string): Promise<Project | null> {
-    // 1. Zamiast ryzykować błędy sieciowe (301, brak slasha) dla pojedynczego ID w Dockerze,
-    // korzystamy z niezawodnej funkcji pobierającej wszystko.
-    const allProjects = await getProjects();
 
-    // 2. Szukamy projektu lokalnie (w pamięci serwera Next.js).
-    // Rzutujemy oba ID na string, aby uniknąć błędów porównania (np. "1" vs 1).
+export async function getProjectById(id: string, lang: string = 'en'): Promise<Project | null> {
+    const allProjects = await getProjects(lang);
     const foundProject = allProjects.find(p => String(p.id) === String(id));
-
-    // 3. Jeśli znajdziemy - zwracamy projekt. Jeśli nie - zwracamy null.
     return foundProject || null;
 }

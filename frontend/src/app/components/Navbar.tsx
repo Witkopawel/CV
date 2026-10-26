@@ -1,5 +1,5 @@
 import Link from 'next/link';
-
+import LanguageSwitcher from '../../components/LanguageSwitcher';
 export default function Navbar() {
   return (
     <nav className="border-b border-gray-200 dark:border-gray-800 p-4">
@@ -16,6 +16,9 @@ export default function Navbar() {
         <li>
           <Link href="/contact" className="hover:text-blue-600 transition-colors">Contact</Link>
         </li>
+	<li>
+	   <LanguageSwitcher />
+	</li>
       </ul>
     </nav>
   );

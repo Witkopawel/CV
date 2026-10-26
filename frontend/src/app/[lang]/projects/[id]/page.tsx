@@ -1,13 +1,23 @@
 ﻿import Link from "next/link";
-import { getProjects } from "../../../lib/api";
+import { getProjects } from "../../../../lib/api";
+import { getDictionary } from "../../../../lib/dictionaries";
+import type { Locale } from "../../../../i18n.config";
 
 export const dynamic = 'force-dynamic';
 
-export default async function ProjectDetail({ params }: any) {
-    const resolvedParams = await params;
-    const rawId = resolvedParams?.id;
+const getLocalized = (fieldObj: Record<string, string> | string | undefined, lang: string) => {
+    if (!fieldObj) return "";
+    if (typeof fieldObj === 'string') return fieldObj;
 
-    const allProjects = await getProjects();
+    return fieldObj[lang] || fieldObj['en'] || Object.values(fieldObj)[0] || "";
+};
+
+export default async function ProjectDetail({ params }: { params: Promise<{ lang: Locale; id: string }> }) {
+    const resolvedParams = await params;
+    const lang = resolvedParams.lang;
+    const rawId = resolvedParams.id;
+
+    const allProjects = await getProjects(lang);
     const project = allProjects.find(p => String(p.id) === String(rawId));
 
     if (!project) {
@@ -19,7 +29,7 @@ export default async function ProjectDetail({ params }: any) {
                     <p className="text-gray-400 mb-8">
                         Projekt nie znajduje się na liście pobranej z backendu.
                     </p>
-                    <Link href="/projects" className="bg-white/10 hover:bg-white/20 text-white px-6 py-3 rounded-full transition-colors border border-white/5 font-medium">
+                    <Link href={`/${lang}/projects`} className="bg-white/10 hover:bg-white/20 text-white px-6 py-3 rounded-full transition-colors border border-white/5 font-medium">
                         Wróć do katalogu projektów
                     </Link>
                 </div>
@@ -27,18 +37,31 @@ export default async function ProjectDetail({ params }: any) {
         );
     }
 
+    const title = getLocalized(project.title, lang);
+    const description = getLocalized(project.description, lang);
+
     return (
         <main className="min-h-screen bg-[#030712] font-sans text-gray-100 overflow-x-hidden selection:bg-blue-500/30">
-            <nav className="absolute top-0 left-0 w-full p-6 md:p-10 z-50">
-                <Link href="/projects" className="inline-flex items-center gap-2 text-white/60 hover:text-white bg-black/20 hover:bg-black/40 backdrop-blur-md px-5 py-2.5 rounded-full transition-all text-sm font-medium border border-white/5 shadow-lg">
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
+            <nav className="absolute top-12 md:top-16 left-0 w-full p-6 md:p-10 z-50">
+                <Link 
+                    href={`/${lang}/projects`} 
+                    className="inline-flex items-center gap-2 text-white/60 hover:text-white transition-colors group"
+                >
+                    <svg 
+                        className="w-4 h-4 transform transition-transform duration-300 group-hover:-translate-x-1" 
+                        fill="none" 
+                        stroke="currentColor" 
+                        viewBox="0 0 24 24"
+                    >
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                    </svg>
                     Wszystkie projekty
                 </Link>
             </nav>
 
             <section className="relative w-full h-[60vh] md:h-[70vh] bg-gray-900 flex items-end justify-center pb-16 md:pb-24 px-4 overflow-hidden">
                 {project.image ? (
-                    <img src={project.image} alt={project.title} className="absolute inset-0 w-full h-full object-cover opacity-40 mix-blend-overlay" />
+                    <img src={project.image} alt={title} className="absolute inset-0 w-full h-full object-cover opacity-40 mix-blend-overlay" />
                 ) : (
                     <div className="absolute inset-0 bg-gradient-to-br from-blue-900 via-[#030712] to-gray-900"></div>
                 )}
@@ -49,7 +72,7 @@ export default async function ProjectDetail({ params }: any) {
                         {project.technology_stack}
                     </span>
                     <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold text-white tracking-tight leading-tight mb-4">
-                        {project.title}
+                        {title}
                     </h1>
                 </div>
             </section>
@@ -60,7 +83,7 @@ export default async function ProjectDetail({ params }: any) {
                         <div className="bg-gray-900/30 border border-gray-800 rounded-3xl p-8 md:p-10 backdrop-blur-sm">
                             <h2 className="text-2xl font-bold text-white mb-6">O projekcie</h2>
                             <p className="text-gray-300 leading-relaxed text-lg whitespace-pre-wrap">
-                                {project.description}
+                                {description}
                             </p>
                         </div>
                     </div>
@@ -69,7 +92,7 @@ export default async function ProjectDetail({ params }: any) {
                         <div className="bg-gray-900/30 border border-gray-800 rounded-3xl p-8 backdrop-blur-sm">
                             <h3 className="text-lg font-bold text-white mb-4">Technologie</h3>
                             <div className="flex flex-wrap gap-2">
-                                {project.technology_stack.split(',').map((tech: string, index: number) => (
+                                {project.technology_stack?.split(',').map((tech: string, index: number) => (
                                     <span key={index} className="px-3 py-1 bg-gray-800 text-gray-300 rounded-lg text-sm border border-gray-700">
                                         {tech.trim()}
                                     </span>

@@ -1,0 +1,52 @@
+{
+  "hero": {
+    "badge": "Nie umiesz? Naucz się i zrób.",
+    "titleStart": "Nie jesteś tutaj bez",
+    "titleHighlight": "POWODU.",
+    "subtitle": "Witaj w moim portfolio.",
+    "scrollText": "Odkryj więcej",
+    "scrollAriaLabel": "Przewiń do projektów",
+    "AboutTeaser": {
+      "tagline": "TL;DR",
+      "titleStart": "Kim ",
+      "titleHighlight": "jestem?",
+      "card1Title": "Fullstack Developer",
+      "card1Desc": "Krótki przegląd moich umiejętności i doświadczenia.",
+      "card2Title": "Architektura Systemów",
+      "card2Desc": "Krótki przegląd moich umiejętności i doświadczenia.",
+      "card3Title": "Psychologia Gracza",
+      "card3Desc": "Nie tylko piszę kod. Analizuję gry od strony designu, by zrozumieć, co realnie wpływa na zaangażowanie i zachowanie użytkownika.",
+      "card4Title": "Hardware & Arduino",
+      "card4Desc": "Wychodzę poza ekran monitora. Buduję fizyczne układy elektroniczne i łączę je z niskopoziomowym kodem w C++.",
+      "summary": "To tylko ułamek mojej drogi. Studiuję Informatykę na Politechnice Rzeszowskiej, koduję każdego dnia i nie boję się żadnego wyzwania.",
+      "cta": "Zobacz pełne CV"
+    },
+    "ContactTeaser": {
+      "title": "Kontakt",
+      "teaserTitleStart": "Zbudujmy coś ",
+      "teaserTitleHighlight": "niesamowitego.",
+      "teaserDescription": "Niezależnie od tego, czy potrzebujesz skonteneryzowanego backendu, nowych mechanik do gry w Unity, czy po prostu chcesz porozmawiać o kodzie – moje środowisko jest gotowe.",
+      "teaserCta": "Zainicjuj kontakt",
+      "githubText": "GitHub"
+    }
+  },
+  "projects": {
+    "titleStart": "Wyróżnione",
+    "titleHighlight": "Projekty",
+    "subtitle": "Przekrój moich umiejętności: od silników gier po backend.",
+    "viewProject": "Przeanalizuj kod"
+  },
+  "about": {
+    "title": "O mnie"
+  },
+  "contact": {
+    "title": "Kontakt"
+  },
+  "projectsList": {
+    "backHome": "Powrót do bazy",
+    "titleStart": "Katalog ",
+    "titleHighlight": "Projektów",
+    "empty": "Baza projektów jest pusta.",
+    "preview": "Podgląd"
+  }
+}

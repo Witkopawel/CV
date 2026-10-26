@@ -16,11 +16,8 @@ const fallbackGradients = [
     "from-indigo-600 to-blue-900"
 ];
 
-// 2. Odbieramy propsy i przypisujemy domyślną pustą tablicę, żeby uniknąć błędów mapowania
 export default function Projects({ initialProjects = [] }: ProjectsProps) {
     const [currentSlide, setCurrentSlide] = useState(0);
-
-    // Awaryjny wygląd, gdy baza jest całkowicie pusta
     if (!initialProjects || initialProjects.length === 0) {
         return (
             <section id="projects" className="relative z-10 min-h-[50vh] bg-[#030712] py-20 flex flex-col justify-center items-center">

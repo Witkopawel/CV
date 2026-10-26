@@ -1,8 +1,11 @@
 from django.contrib import admin
-from .models import Project
+from .models import Project, ProjectTranslation
+
+class ProjectTranslationInline(admin.StackedInline):
+    model = ProjectTranslation
+    extra = 1
 
 @admin.register(Project)
 class ProjectAdmin(admin.ModelAdmin):
-    list_display = ('title', 'technology_stack', 'created_at')
-    search_fields = ('title', 'technology_stack')
-    list_filter = ('created_at',)
+    inlines = [ProjectTranslationInline]
+    list_display = ('id', 'category', 'technology_stack')

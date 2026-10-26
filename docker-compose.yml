@@ -39,10 +39,6 @@ services:
       - frontend
   frontend:
     build: ./frontend
-    volumes:
-      - ./frontend:/app
-      - /app/node_modules
-      - /app/.next
     env_file:
       - ./frontend/.env.local
     depends_on:

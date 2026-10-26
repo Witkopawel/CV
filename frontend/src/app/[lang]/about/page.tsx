@@ -1,6 +1,5 @@
 import Image from "next/image";
-// Zależnie od struktury, dostosuj ścieżkę (np. "../../data/cv.json" jeśli używasz folderu src/)
-import cvDataRaw from "../../../data/cv.json";
+import cvDataRaw from "../../../../data/cv.json";
 
 interface Education {
     institution: string;
@@ -46,8 +45,6 @@ export default function Home() {
     return (
         <main className="min-h-screen bg-gray-50 dark:bg-gray-950 py-12 px-4 sm:px-6 lg:px-8 font-sans text-gray-800 dark:text-gray-200">
             <div className="max-w-5xl mx-auto bg-white dark:bg-gray-900 rounded-2xl shadow-xl overflow-hidden flex flex-col md:flex-row">
-
-                {/* Lewa kolumna: Informacje podstawowe i kontakt */}
                 <aside className="w-full md:w-1/3 bg-gray-100 dark:bg-gray-800 p-8 flex flex-col items-center md:items-start text-center md:text-left">
                     <div className="relative w-48 h-48 rounded-full overflow-hidden border-4 border-gray-300 dark:border-gray-700 mb-6 shadow-md">
                         <Image
@@ -92,8 +89,6 @@ export default function Home() {
                         </ul>
                     </div>
                 </aside>
-
-                {/* Prawa kolumna: Główne treści */}
                 <section className="w-full md:w-2/3 p-8 md:p-12 space-y-10">
 
                     <div>
